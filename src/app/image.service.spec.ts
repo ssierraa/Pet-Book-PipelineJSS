@@ -1,34 +1,29 @@
-import { TestBed } from '@angular/core/testing';
-
 import { ImageService } from './image.service';
 
 describe('ImageService', () => {
   let service: ImageService;
 
   beforeEach(() => {
-    service = new ImageService();
+    service = new ImageService()
   });
 
-  it('debe crearse el servicio', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
+  
   describe('getImages', () => {
-    it('debe retornar todas las imagenes', () => {
-      let imagenes = service.getImages();
-      expect(imagenes.length).toEqual(5);
+    it('should return all images', () => {
+      expect(service.getImages().length).toEqual(5);
     });
   });
 
   describe('getImage', () => {
-    it('debe retornar la imagen con id si existe', () => {
-      let imagene = service.getImage(1);
-      expect(imagene.brand).toEqual('perro');
+    it('should return an image if the id exists', () => {
+      expect(service.getImage(4).brand).toBe('gato');
     });
 
-    it('debe retornar indefinido si se busca una imagen con id que NO existe', () => {
-      let imagene = service.getImage(100);
-      expect(imagene).toEqual(undefined);
+    it('should return undefined when the id does not exist', () => {
+      expect(service.getImage(-1)).toBeUndefined;
     });
   });
 });
